@@ -43,7 +43,7 @@ public class TSPTest {
 	
 	@Test
 	public void testAtt48() {
-		TSPSampleInitializer.initAtt48();
+		TSPLoader.loadFromFile("datasets/att48.tsp", "datasets/att48.opt.tour");
 		GAOptions options = new GAOptions()
 			.enable2Opt()
 			.setMutation(new SwapCities(0.015));
@@ -62,7 +62,7 @@ public class TSPTest {
 
 	@Test
 	public void testKroD100() {
-		TSPSampleInitializer.initKroD100();
+		TSPLoader.loadFromFile("datasets/kroD100.tsp", "datasets/kroD100.opt.tour");
 		GAOptions options = new GAOptions()
 			.enable2Opt()
 			.setMutation(new SwapCities(0.015));
@@ -77,25 +77,6 @@ public class TSPTest {
 			.enable2Opt()
 			.setMutation(new EdgeInversion(0.50));
 		runGA("kroD100", 120, options);
-	}
-	
-	@Test
-	public void testPr76() {
-		TSPSampleInitializer.initPr76();
-		GAOptions options = new GAOptions()
-			.enable2Opt()
-			.setMutation(new SwapCities(0.015));
-		runGA("pr76", 120, options);
-		
-		options = new GAOptions()
-			.enable2Opt()
-			.setMutation(new EdgeInversion(0.10));
-		runGA("pr76", 120, options);
-		
-		options = new GAOptions()
-			.enable2Opt()
-			.setMutation(new EdgeInversion(0.50));
-		runGA("pr76", 120, options);
 	}
 	
 	@Test
