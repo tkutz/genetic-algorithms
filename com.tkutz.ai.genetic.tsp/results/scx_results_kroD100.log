@@ -1,0 +1,54 @@
+Solving TSP 'kroD100' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Swap Cities (0.015)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		21294.290821490355
+Best Cost:			21309.582775259478 (+0,07%)
+Worst Cost:			22156.341886132177 (+4,05%)
+Average Cost:		21703.962342639414 (+1,92%)
+
+Avg #generations:	121
+Avg Time:			12418ms
+--------------------------------------------------
+
+Solving TSP 'kroD100' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.1)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		21294.290821490355
+Best Cost:			21446.881804982688 (+0,72%)
+Worst Cost:			21780.482252869417 (+2,28%)
+Average Cost:		21588.819202751096 (+1,38%)
+
+Avg #generations:	70
+Avg Time:			7396ms
+--------------------------------------------------
+
+Solving TSP 'kroD100' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.5)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		21294.290821490355
+Best Cost:			21309.582775259474 (+0,07%)
+Worst Cost:			21627.852511282785 (+1,57%)
+Average Cost:		21461.9631170695 (+0,79%)
+
+Avg #generations:	91
+Avg Time:			9625ms
+--------------------------------------------------
+

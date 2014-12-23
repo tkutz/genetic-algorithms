@@ -1,0 +1,54 @@
+Solving TSP 'att48' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Swap Cities (0.015%)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		33523.70850743559
+Best Cost:			33523.70850743558 (+-0,00%)
+Worst Cost:			33901.505574034636 (+1,13%)
+Average Cost:		33595.20535944627 (+0,21%)
+
+Avg #generations:	208
+Avg Time:			3261ms
+--------------------------------------------------
+
+Solving TSP 'att48' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.1%)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		33523.70850743559
+Best Cost:			33523.708507435585 (+-0,00%)
+Worst Cost:			33755.35204159013 (+0,69%)
+Average Cost:		33583.927631195 (+0,18%)
+
+Avg #generations:	207
+Avg Time:			3166ms
+--------------------------------------------------
+
+Solving TSP 'att48' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.5%)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		33523.70850743559
+Best Cost:			33523.70850743558 (+-0,00%)
+Worst Cost:			33600.56145847071 (+0,23%)
+Average Cost:		33557.60648281459 (+0,10%)
+
+Avg #generations:	207
+Avg Time:			3251ms
+--------------------------------------------------
+
