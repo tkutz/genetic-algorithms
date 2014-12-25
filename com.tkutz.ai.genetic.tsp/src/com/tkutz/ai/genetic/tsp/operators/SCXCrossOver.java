@@ -60,21 +60,23 @@ public class SCXCrossOver implements CrossOver<TSPIndividual> {
 	 * @param tour
 	 */
 	private void perform2Opt(TSPIndividual tour) {
-		
-		outer: for (int i = 0; i<tour.getSize()-2; i++) {
+		int size = tour.getSize();
+		outer: for (int i = 0; i<size-1; i++) {
 			City sourceOne = tour.getCity(i);
 			City targetOne = tour.getCity(i+1);
 			double costEdgeOne = TSP.getCost(sourceOne, targetOne);
 			// search a candidate for edge exchange
-			for (int j=i+1; j<tour.getSize()-1; j++) {
-				City sourceTwo = tour.getCity(j);
-				City targetTwo = tour.getCity(j+1);
+			for (int len=1; len<size/2; len++) {
+				int sourceTwoIndex = (i+len)%size;
+				int targetTwoIndex = (i+len+1)%size;
+				City sourceTwo = tour.getCity(sourceTwoIndex);
+				City targetTwo = tour.getCity(targetTwoIndex);
 				double costEdgeTwo = TSP.getCost(sourceTwo, targetTwo);
 				double costSwitchedEdgeOne = TSP.getCost(sourceOne, sourceTwo);
 				double costSwitchedEdgeTwo = TSP.getCost(targetOne, targetTwo);
 				
 				if (costEdgeOne+costEdgeTwo > costSwitchedEdgeOne+costSwitchedEdgeTwo) {
-					exchangeEdge(tour, i,j);
+					exchangeEdge(tour, i, sourceTwoIndex);
 					continue outer;
 				}
 				
@@ -89,11 +91,24 @@ public class SCXCrossOver implements CrossOver<TSPIndividual> {
 		
 		tour.setCity(i+1, sourceTwo);
 		// reverse city order between the two new edges, since we resolved a crossing
-		List<City> subTour = new ArrayList<City>(tour.getCities().subList(i+2, j));
+		int size = tour.getSize();
+		List<City> subTour = getSubtour(tour, (i+2)%size, j);
 		for (int k = 0; k<subTour.size(); k++) {
-			tour.setCity(j-(k+1), subTour.get(k));
+			int setIndex = (tour.getSize()+j-(k+1)) % size;
+			tour.setCity(setIndex, subTour.get(k));
 		}
 		tour.setCity(j, targetOne);
+	}
+
+	private List<City> getSubtour(TSPIndividual tour, int startIndex, int endIndex) {
+		List<City> subTour = new ArrayList<City>();
+		int index = startIndex;
+		while(index!=endIndex) {
+			subTour.add(tour.getCity(index));
+			index++;
+			index = index % tour.getSize();
+		}
+		return subTour;
 	}
 
 	private City getNext(City current, TSPIndividual parent, TSPIndividual offspring) {
