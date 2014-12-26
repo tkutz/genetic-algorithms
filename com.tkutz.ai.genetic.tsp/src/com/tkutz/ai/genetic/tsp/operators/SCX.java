@@ -11,15 +11,15 @@ import com.tkutz.ai.tsp.TSP;
  * @author Thomas Kutz
  *
  */
-public class SCXCrossOver implements CrossOver<TSPIndividual> {
+public class SCX implements CrossOver<TSPIndividual> {
 
 	private boolean do2Opt;
 
-	public SCXCrossOver(boolean do2Opt) {
+	public SCX(boolean do2Opt) {
 		this.do2Opt = do2Opt;
 	}
 
-	public SCXCrossOver() {
+	public SCX() {
 		this(false);
 	}
 

@@ -6,7 +6,7 @@ import com.tkutz.ai.genetic.crossover.CrossOver;
 import com.tkutz.ai.genetic.mutation.Mutation;
 import com.tkutz.ai.genetic.replace.Replacement;
 import com.tkutz.ai.genetic.selection.Selection;
-import com.tkutz.ai.genetic.tsp.operators.SCXCrossOver;
+import com.tkutz.ai.genetic.tsp.operators.SCX;
 
 public class GeneticTSPSolver extends GeneticAlgorithm<TSPIndividual> {
 
@@ -27,7 +27,7 @@ public class GeneticTSPSolver extends GeneticAlgorithm<TSPIndividual> {
 
 	@Override
 	protected CrossOver<TSPIndividual> getCrossOver() {
-		return new SCXCrossOver(options.do2Opt);
+		return new SCX(options.do2Opt);
 	}
 
 	@Override
