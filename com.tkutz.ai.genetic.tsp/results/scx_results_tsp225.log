@@ -1,0 +1,18 @@
+Solving TSP 'tsp225' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.5)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		3864.0
+Best Cost:			3883.221367347683 (+0,50%)
+Worst Cost:			3963.9055191186617 (+2,59%)
+Average Cost:		3911.9103439796477 (+1,24%)
+
+Avg #generations:	223
+Avg Time:			669102ms
+--------------------------------------------------
+
