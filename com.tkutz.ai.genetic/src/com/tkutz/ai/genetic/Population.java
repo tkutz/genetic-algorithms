@@ -11,7 +11,6 @@ import java.util.ArrayList;
  */
 public class Population<T extends Individual> {
 
-	// TODO list or better set, e.g. linkedHashSet?
 	private ArrayList<T> individuals;
 
 	public Population(int populationSize) {
@@ -20,15 +19,6 @@ public class Population<T extends Individual> {
 		for (int i=0; i<populationSize; i++) {
 			individuals.add(null);
 		}
-
-		// TODO: do initialization outside where concrete individual type is known
-//		if (initialise) {
-//			for (int i = 0; i < size(); i++) {
-//				T newIndividual = individualType.newInstance();
-//				newIndividual.initialize();
-//				setIndividual(i, newIndividual);
-//			}
-//		}
 	}
 
 	public void setIndividual(int index, T element) {
@@ -41,7 +31,6 @@ public class Population<T extends Individual> {
 
 	public T getFittest() {
 		T fittest = individuals.get(0);
-
 		for (int i = 1; i < size(); i++) {
 			if (fittest.getFitness() <= getIndividual(i).getFitness()) {
 				fittest = getIndividual(i);
