@@ -1,8 +1,5 @@
 package com.tkutz.ai.genetic.tsp.operators;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.tkutz.ai.genetic.crossover.CrossOver;
 import com.tkutz.ai.genetic.tsp.TSPIndividual;
 import com.tkutz.ai.tsp.City;
@@ -45,72 +42,13 @@ public class SCXCrossOver implements CrossOver<TSPIndividual> {
 			offspring.setCity(i, nextCity);
 		}
 		if (do2Opt) {
-			perform2Opt(offspring);
+			TwoOptAlgorithm.run(offspring);
 		}
 
 		return offspring;
 	}
 
-	/**
-	 * Performs 2-opt optimization for given individual. Thereby, iteratively
-	 * for all cities, the first improvement is taken for edge switching.
-	 * 
-	 * Note that this operation changes the given individual.
-	 * 
-	 * @param tour
-	 */
-	private void perform2Opt(TSPIndividual tour) {
-		int size = tour.getSize();
-		outer: for (int i = 0; i<size-1; i++) {
-			City sourceOne = tour.getCity(i);
-			City targetOne = tour.getCity(i+1);
-			double costEdgeOne = TSP.getCost(sourceOne, targetOne);
-			// search a candidate for edge exchange
-			for (int len=1; len<size/2; len++) {
-				int sourceTwoIndex = (i+len)%size;
-				int targetTwoIndex = (i+len+1)%size;
-				City sourceTwo = tour.getCity(sourceTwoIndex);
-				City targetTwo = tour.getCity(targetTwoIndex);
-				double costEdgeTwo = TSP.getCost(sourceTwo, targetTwo);
-				double costSwitchedEdgeOne = TSP.getCost(sourceOne, sourceTwo);
-				double costSwitchedEdgeTwo = TSP.getCost(targetOne, targetTwo);
-				
-				if (costEdgeOne+costEdgeTwo > costSwitchedEdgeOne+costSwitchedEdgeTwo) {
-					exchangeEdge(tour, i, sourceTwoIndex);
-					continue outer;
-				}
-				
-			}
-			
-		}
-	}
-
-	private void exchangeEdge(TSPIndividual tour, int i, int j) {
-		City targetOne = tour.getCity(i+1);
-		City sourceTwo = tour.getCity(j);
-		
-		tour.setCity(i+1, sourceTwo);
-		// reverse city order between the two new edges, since we resolved a crossing
-		int size = tour.getSize();
-		List<City> subTour = getSubtour(tour, (i+2)%size, j);
-		for (int k = 0; k<subTour.size(); k++) {
-			int setIndex = (tour.getSize()+j-(k+1)) % size;
-			tour.setCity(setIndex, subTour.get(k));
-		}
-		tour.setCity(j, targetOne);
-	}
-
-	private List<City> getSubtour(TSPIndividual tour, int startIndex, int endIndex) {
-		List<City> subTour = new ArrayList<City>();
-		int index = startIndex;
-		while(index!=endIndex) {
-			subTour.add(tour.getCity(index));
-			index++;
-			index = index % tour.getSize();
-		}
-		return subTour;
-	}
-
+	
 	private City getNext(City current, TSPIndividual parent, TSPIndividual offspring) {
 		int pos = parent.getPositionOf(current);
 		City next;
