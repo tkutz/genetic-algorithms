@@ -21,6 +21,7 @@ import com.tkutz.ai.genetic.Population;
 import com.tkutz.ai.genetic.tsp.GAOptions;
 import com.tkutz.ai.genetic.tsp.GeneticTSPSolver;
 import com.tkutz.ai.genetic.tsp.TSPIndividual;
+import com.tkutz.ai.genetic.tsp.operators.EdgeInversion;
 import com.tkutz.ai.tsp.City;
 import com.tkutz.ai.tsp.TSP;
 import com.tkutz.ai.tsp.TSPLoader;
@@ -39,7 +40,6 @@ public class TSPApplication {
 	private static Text populationCount;
 
 	public static void main(String[] args) {
-		// TODO: make problem size parameterized
 
 		Display display = new Display();
 		Shell shell = new Shell(display);
@@ -102,7 +102,10 @@ public class TSPApplication {
 				Tour bestTour = null;
 				double avgCost = 0;
 				double worstCost = 0;
-				GeneticAlgorithm<TSPIndividual> ga = new GeneticTSPSolver(new GAOptions().enable2Opt());
+				GAOptions options = new GAOptions()
+										.enable2Opt()
+										.setMutation(new EdgeInversion(0.50));
+				GeneticAlgorithm<TSPIndividual> ga = new GeneticTSPSolver(options);
 				for (int ex = 0; ex < EXEC_COUNT; ex++) {
 					Population<TSPIndividual> pop = new Population<TSPIndividual>(POP_COUNT);
 					ga.initialize(pop);
@@ -136,21 +139,21 @@ public class TSPApplication {
 		l2.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
 		populationCount = new Text(controls, SWT.NONE);
 		populationCount.setLayoutData(textLayoutData);
-		populationCount.setText("50");
+		populationCount.setText("150");
 		
 		Label l3 = new Label(controls, SWT.NONE);
 		l3.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
 		l3.setText("Generations: ");
 		generationCount = new Text(controls, SWT.NONE);
 		generationCount.setLayoutData(textLayoutData);
-		generationCount.setText("10");
+		generationCount.setText("100");
 
 		Label l4 = new Label(controls, SWT.NONE);
 		l4.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
 		l4.setText("Executions: ");
 		executionCount = new Text(controls, SWT.NONE);
 		executionCount.setLayoutData(textLayoutData);
-		executionCount.setText("10");
+		executionCount.setText("1");
 
 		Label l5 = new Label(controls, SWT.NONE);
 		l5.setText("Results: ");

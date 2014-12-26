@@ -14,8 +14,8 @@ public class GAOptions {
 	/** Default: 2-opt is disabled */
 	protected boolean do2Opt = false;
 	
-	/** Default: SwapMutation with 10% mutation rate */
-	protected Mutation<TSPIndividual> mutation = new SwapCities(0.1);
+	/** Default: SwapMutation with 1.5% mutation rate */
+	protected Mutation<TSPIndividual> mutation = new SwapCities(0.015);
 
 	/** Default: Tournament selection with tournament size 3 */
 	protected Selection<TSPIndividual> selection = new TournamentSelection<TSPIndividual>(3);
