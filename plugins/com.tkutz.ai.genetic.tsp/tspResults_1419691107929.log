@@ -1,0 +1,18 @@
+Solving TSP 'ch150' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.5)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		6534.71962456902
+Best Cost:			6532.87033981018 (+-0,03%)
+Worst Cost:			6581.335376281007 (+0,71%)
+Average Cost:		6556.865992435174 (+0,34%)
+
+Avg #generations:	148
+Avg Time:			46642ms
+--------------------------------------------------
+

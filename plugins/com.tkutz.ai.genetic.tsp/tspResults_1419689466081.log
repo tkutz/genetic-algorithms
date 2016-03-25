@@ -1,0 +1,18 @@
+Solving TSP 'pr76' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.5)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		108159.4382741377
+Best Cost:			108159.43827413766 (+-0,00%)
+Worst Cost:			109086.6466902167 (+0,86%)
+Average Cost:		108256.4309706429 (+0,09%)
+
+Avg #generations:	110
+Avg Time:			6017ms
+--------------------------------------------------
+

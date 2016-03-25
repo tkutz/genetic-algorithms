@@ -88,6 +88,25 @@ public class TSPTest {
 		runGA("tsp225", 120, options);
 	}
 	
+	
+	@Test
+	public void testPr76() {
+		TSPLoader.loadFromFile("datasets/pr76.tsp", "datasets/pr76.opt.tour");
+		GAOptions options = new GAOptions()
+			.enable2Opt()
+			.setMutation(new EdgeInversion(0.5));
+		runGA("pr76", 120, options);
+	}
+	
+	@Test
+	public void testCh150() {
+		TSPLoader.loadFromFile("datasets/ch150.tsp", "datasets/ch150.opt.tour");
+		GAOptions options = new GAOptions()
+			.enable2Opt()
+			.setMutation(new EdgeInversion(0.5));
+		runGA("ch150", 120, options);
+	}
+	
 	@Test
 	public void testXqf131() {
 		TSPLoader.loadFromFile("datasets/xqf131.tsp");

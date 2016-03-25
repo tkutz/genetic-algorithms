@@ -1,0 +1,18 @@
+Solving TSP 'eil76' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.5)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		545.3875524687445
+Best Cost:			544.3690526708283 (+-0,19%)
+Worst Cost:			548.6150907494915 (+0,59%)
+Average Cost:		545.586130599044 (+0,04%)
+
+Avg #generations:	121
+Avg Time:			6579ms
+--------------------------------------------------
+

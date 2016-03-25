@@ -28,7 +28,7 @@ public class HeldKarpTSPSolver {
 		// assume TYPE: TSP, EDGE_WEIGHT_TYPE: EUC_2D
 		// no error checking
 		HeldKarpTSPSolver tsp = new HeldKarpTSPSolver();
-		tsp.readInput(new FileReader("datasets/kroD100.tsp"));
+		tsp.readInput(new FileReader("datasets/ch150.tsp"));
 		
 		long start = System.currentTimeMillis();
 		tsp.solve();
