@@ -81,20 +81,21 @@ public class ElitismTest {
 	private void doTestElites(int numberOfElites) {
 		Elitism<TestIndividual> elitism = new Elitism<>(numberOfElites);
 		
-		Population<TestIndividual> result = elitism.execute(oldPopulation, newPopulation);
+		Population<TestIndividual> mergedPopulation = new Population<>(oldPopulation);
+		elitism.execute(mergedPopulation, newPopulation);
 		
 		List<TestIndividual> nFittest = oldPopulation.getNFittest(numberOfElites);
 
 		// check all n-fittest of old population are retained in result
 		List<Integer> eliteIdxs = new ArrayList<>(numberOfElites);
 		for (TestIndividual fittest : nFittest) {
-			int eliteIdx = result.getIndividuals().indexOf(fittest);
+			int eliteIdx = mergedPopulation.getIndividuals().indexOf(fittest);
 			assertTrue(eliteIdx > -1);
 			eliteIdxs.add(eliteIdx);
 		}
 		// check all other in result are from new population
-		for (int i = 0; i < result.size() && !eliteIdxs.contains(i); i++) {
-			assertTrue(newPopulation.getIndividuals().contains(result.getIndividual(i)));
+		for (int i = 0; i < mergedPopulation.size() && !eliteIdxs.contains(i); i++) {
+			assertTrue(newPopulation.getIndividuals().contains(mergedPopulation.getIndividual(i)));
 		}
 	}
 }

@@ -35,6 +35,6 @@ public abstract class GeneticAlgorithm<T extends Individual> {
 			newPopulation.setIndividual(i, offspring);
 		}
 		// replacement
-		oldPopulation = getReplacement().execute(oldPopulation, newPopulation);
+		getReplacement().execute(oldPopulation, newPopulation);
 	}
 }

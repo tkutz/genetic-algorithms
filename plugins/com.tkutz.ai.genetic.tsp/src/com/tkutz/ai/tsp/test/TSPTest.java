@@ -3,6 +3,7 @@ package com.tkutz.ai.tsp.test;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -30,7 +31,7 @@ public class TSPTest {
 	@BeforeClass
 	public static void initFileStream() {
 		try {
-			resultWriter = new PrintWriter(new FileWriter("tspResults_"+System.currentTimeMillis()+".log"), true);
+			resultWriter = new PrintWriter(new FileWriter("tspResults_"+LocalDateTime.now()+".log"), true);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -181,6 +182,7 @@ public class TSPTest {
 		}
 		
 		StringBuilder resultBuilder = new StringBuilder();
+		resultBuilder.append(NL);
 		resultBuilder.append("Solving TSP '"+tspName+"' using SCX:" + NL);
 		resultBuilder.append(options.toString()+NL);
 		resultBuilder.append("- population size: \t"+popSize + NL);

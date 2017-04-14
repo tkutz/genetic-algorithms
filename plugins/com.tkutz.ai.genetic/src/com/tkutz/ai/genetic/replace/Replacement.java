@@ -5,5 +5,5 @@ import com.tkutz.ai.genetic.Population;
 
 public interface Replacement<T extends Individual> {
 
-	Population<T> execute(Population<T> oldPopulation, Population<T> newPopulation);
+	void execute(Population<T> oldPopulation, Population<T> newPopulation);
 }

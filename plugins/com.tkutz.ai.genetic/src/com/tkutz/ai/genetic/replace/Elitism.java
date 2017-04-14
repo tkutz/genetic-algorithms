@@ -1,5 +1,7 @@
 package com.tkutz.ai.genetic.replace;
 
+import java.util.List;
+
 import com.tkutz.ai.genetic.Individual;
 import com.tkutz.ai.genetic.Population;
 
@@ -16,15 +18,14 @@ public class Elitism<T extends Individual> implements Replacement<T> {
 	}
 	
 	@Override
-	public Population<T> execute(Population<T> oldPopulation, Population<T> newPopulation) {
-		Population<T> mergedPopulation = new Population<>(oldPopulation);
-		mergedPopulation.setAllIndividuals(0, oldPopulation.getNFittest(numberOfElites));
-		for (int i = numberOfElites; i < mergedPopulation.size(); i++) {
+	public void execute(Population<T> oldPopulation, Population<T> newPopulation) {
+		List<T> elites = oldPopulation.getNFittest(numberOfElites);
+		oldPopulation.setAllIndividuals(0, elites);
+		for (int i = numberOfElites; i < oldPopulation.size(); i++) {
 			if (i < newPopulation.size()) {
-				mergedPopulation.setIndividual(i, newPopulation.getIndividual(i));
+				oldPopulation.setIndividual(i, newPopulation.getIndividual(i));
 			}
 		}
-		return mergedPopulation;
 	}
 	
 	@Override
