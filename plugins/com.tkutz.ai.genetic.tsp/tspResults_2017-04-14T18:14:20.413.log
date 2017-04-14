@@ -1,0 +1,171 @@
+
+Solving TSP 'att48' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Swap Cities (0.015)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		33523.70850743559
+Best Cost:			33523.70850743558 (+-0,00%)
+Worst Cost:			33632.12940812025 (+0,32%)
+Average Cost:		29840.023973658248 (+-10,99%)
+
+Avg #generations:	65
+Avg Time:			2772ms
+--------------------------------------------------
+
+
+Solving TSP 'att48' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.1)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		33523.70850743559
+Best Cost:			33523.708507435585 (+-0,00%)
+Worst Cost:			33723.78409194057 (+0,60%)
+Average Cost:		29843.818599566643 (+-10,98%)
+
+Avg #generations:	56
+Avg Time:			2210ms
+--------------------------------------------------
+
+
+Solving TSP 'att48' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.5)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		33523.70850743559
+Best Cost:			33523.70850743558 (+-0,00%)
+Worst Cost:			33555.276457085136 (+0,09%)
+Average Cost:		29802.359556570467 (+-11,10%)
+
+Avg #generations:	72
+Avg Time:			2837ms
+--------------------------------------------------
+
+
+Solving TSP 'ch150' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.5)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		6534.71962456902
+Best Cost:			6532.87033981018 (+-0,03%)
+Worst Cost:			6577.4944159286015 (+0,65%)
+Average Cost:		5822.314864740563 (+-10,90%)
+
+Avg #generations:	108
+Avg Time:			94496ms
+--------------------------------------------------
+
+
+Solving TSP 'pr76' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.5)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		108159.4382741377
+Best Cost:			108159.43827413766 (+-0,00%)
+Worst Cost:			108304.51427817573 (+0,13%)
+Average Cost:		96157.84246634883 (+-11,10%)
+
+Avg #generations:	78
+Avg Time:			10244ms
+--------------------------------------------------
+
+
+Solving TSP 'kroD100' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Swap Cities (0.015)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		21294.290821490355
+Best Cost:			21526.483884908637 (+1,09%)
+Worst Cost:			22044.968135497034 (+3,53%)
+Average Cost:		19297.756907709365 (+-9,38%)
+
+Avg #generations:	128
+Avg Time:			35843ms
+--------------------------------------------------
+
+
+Solving TSP 'kroD100' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.1)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		21294.290821490355
+Best Cost:			21309.582775259478 (+0,07%)
+Worst Cost:			21596.162947543737 (+1,42%)
+Average Cost:		19052.850170137466 (+-10,53%)
+
+Avg #generations:	62
+Avg Time:			15800ms
+--------------------------------------------------
+
+
+Solving TSP 'kroD100' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.5)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		21294.290821490355
+Best Cost:			21309.582775259467 (+0,07%)
+Worst Cost:			21516.005175481394 (+1,04%)
+Average Cost:		19027.80389305935 (+-10,64%)
+
+Avg #generations:	95
+Avg Time:			27371ms
+--------------------------------------------------
+
+
+Solving TSP 'tsp225' using SCX:
+Options: 
+- 2-opt: enabled
+- Selection: Deterministic 3-Tournament
+- Mutation: Edge Inversion (0.5)
+- Replacement: 1-Elitism
+
+- population size: 	120
+
+Optimal Cost:		3864.0
+Best Cost:			3887.1455640598706 (+0,60%)
+Worst Cost:			4045.7746447382015 (+4,70%)
+Average Cost:		3491.4491050395573 (+-9,64%)
+
+Avg #generations:	176
+Avg Time:			623349ms
+--------------------------------------------------
+

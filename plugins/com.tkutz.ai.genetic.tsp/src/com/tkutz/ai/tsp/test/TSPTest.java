@@ -4,6 +4,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -24,7 +31,7 @@ public class TSPTest {
 
 	private static final int TERMINATION_WINDOW = 30;
 	private static final String NL = System.getProperty("line.separator");
-	private static final int EXEC_COUNT = 10;
+	private static final int EXEC_COUNT = 8; // 8 core processor
 
 	private static PrintWriter resultWriter;
 	
@@ -117,6 +124,35 @@ public class TSPTest {
 		runGA("xqf131", 150, options);
 	}
 	
+	private static class ExecutionResult {
+		private final long time;
+		private final double value;
+		private final String info;
+		private int genCount;
+		
+		public ExecutionResult(long time, double value, int genCount, String info) {
+			this.time = time;
+			this.value = value;
+			this.genCount = genCount;
+			this.info = info;
+		}
+		
+		public long getTime() {
+			return time;
+		}
+		
+		public double getValue() {
+			return value;
+		}
+		
+		public String getInfo() {
+			return info;
+		}
+		
+		public int getGenCount() {
+			return genCount;
+		}
+	}
 	
 	protected void runGA(String tspName, final int popSize, GAOptions options) {
 		double bestCost = Double.MAX_VALUE;
@@ -127,52 +163,38 @@ public class TSPTest {
 		
 		GeneticAlgorithm<TSPIndividual> ga = new GeneticTSPSolver(options);
 		
+		ExecutorService executor = Executors.newFixedThreadPool(EXEC_COUNT);
+		Callable<ExecutionResult> executionTask = () -> {
+			return execute(ga, popSize);
+		};
+		List<Future<ExecutionResult>> results = new ArrayList<>();
+		
 		for (int ex = 0; ex < EXEC_COUNT; ex++) {
-			
-			System.out.println("============== EXECUTION "+(ex+1)+ " =================");
-			
-			// time measuring
-			long startTime = System.currentTimeMillis();
-			
-			Population<TSPIndividual> pop = new Population<TSPIndividual>(popSize);
-			ga.initialize(pop);
-			
-			boolean hasImproved = true;
-			int genCount = 0;
-			double lastFittestValue = pop.getFittest().getCost();
-			System.out.println("- Generation "+genCount+": Best Cost = "+lastFittestValue);
-			while(hasImproved) {
-				
-				ga.evolve(pop);
-				
-				genCount++;
-				if ((genCount % TERMINATION_WINDOW) == 0) {
-					// check if solution improved over last 100 generations
-					double currentFittestValue = pop.getFittest().getCost();
-					if (lastFittestValue <= currentFittestValue) {
-						hasImproved = false;
-					}
-					else {
-						lastFittestValue = currentFittestValue;
-					}
-					System.out.println("- Generation "+genCount+": Best Cost = "+currentFittestValue);
-				}
-				
-			}
-			long endTime = System.currentTimeMillis();
-			avgTime = (avgTime * ex + (endTime-startTime)) / (ex + 1);
-			
-			Tour bestTourExecution = pop.getFittest();
-			double bestCostExecution = bestTourExecution.getCost();
-			if (bestCostExecution < bestCost) {
-				bestCost = bestCostExecution;
-			}
-			if (bestCostExecution > worstCost) {
-				worstCost = bestCostExecution;
-			}
-			avgCost = (avgCost * ex + bestCostExecution) / (ex + 1);
-			avgGenCount = (avgGenCount * ex + genCount) / (ex +1);
+			Future<ExecutionResult> future = executor.submit(executionTask);
+			results.add(future);
 		}
+		int index = 0;
+		for (Future<ExecutionResult> future : results) {
+			try {
+				ExecutionResult result = future.get();
+				System.out.println("============== EXECUTION "+(++index)+ " =================");
+				System.out.println(result.getInfo());
+				avgTime = (avgTime * index + result.getTime()) / (index + 1);
+				
+				if (result.getValue() < bestCost) {
+					bestCost = result.getValue();
+				}
+				if (result.getValue() > worstCost) {
+					worstCost = result.getValue();
+				}
+				avgCost = (avgCost * index + result.getValue()) / (index + 1);
+				avgGenCount = (avgGenCount * index + result.getGenCount()) / (index +1);
+			} catch (InterruptedException | ExecutionException e) {
+				e.printStackTrace();
+			}
+		}
+		executor.shutdown();
+		
 		double optimalCost = 0;
 		if (TSP.getSolution() != null) {
 			Tour optimalTour = new Tour(false);
@@ -199,5 +221,45 @@ public class TSPTest {
 		
 		resultWriter.append(resultBuilder.toString());
 	}
+	
+	protected ExecutionResult execute(GeneticAlgorithm<TSPIndividual> ga, int popSize) {
+		StringBuilder info = new StringBuilder();
+		// time measuring
+		long startTime = System.currentTimeMillis();
+		
+		Population<TSPIndividual> pop = new Population<TSPIndividual>(popSize);
+		ga.initialize(pop);
+		
+		boolean hasImproved = true;
+		int genCount = 0;
+		double lastFittestValue = pop.getFittest().getCost();
+		info.append("- Generation "+genCount+": Best Cost = "+lastFittestValue+NL);
+		while(hasImproved) {
+			
+			ga.evolve(pop);
+			
+			genCount++;
+			if ((genCount % TERMINATION_WINDOW) == 0) {
+				// check if solution improved over last 30 generations
+				double currentFittestValue = pop.getFittest().getCost();
+				if (lastFittestValue <= currentFittestValue) {
+					hasImproved = false;
+				}
+				else {
+					lastFittestValue = currentFittestValue;
+				}
+				info.append("- Generation "+genCount+": Best Cost = "+currentFittestValue+NL);
+			}
+			
+		}
+		long endTime = System.currentTimeMillis();
+		long executionTime = endTime - startTime;
+		Tour bestTourExecution = pop.getFittest();
+		double bestCostExecution = bestTourExecution.getCost();
+		
+		return new ExecutionResult(executionTime, bestCostExecution, genCount, info.toString());
+	}
+	
+	
 
 }
