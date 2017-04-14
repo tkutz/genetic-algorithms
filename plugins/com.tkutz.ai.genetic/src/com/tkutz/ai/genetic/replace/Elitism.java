@@ -17,13 +17,14 @@ public class Elitism<T extends Individual> implements Replacement<T> {
 	
 	@Override
 	public Population<T> execute(Population<T> oldPopulation, Population<T> newPopulation) {
-		oldPopulation.setIndividual(0, oldPopulation.getFittest());
-		for (int i = numberOfElites; i < oldPopulation.size(); i++) {
+		Population<T> mergedPopulation = new Population<>(oldPopulation);
+		mergedPopulation.setAllIndividuals(0, oldPopulation.getNFittest(numberOfElites));
+		for (int i = numberOfElites; i < mergedPopulation.size(); i++) {
 			if (i < newPopulation.size()) {
-				oldPopulation.setIndividual(i, newPopulation.getIndividual(i));
+				mergedPopulation.setIndividual(i, newPopulation.getIndividual(i));
 			}
 		}
-		return oldPopulation;
+		return mergedPopulation;
 	}
 	
 	@Override
