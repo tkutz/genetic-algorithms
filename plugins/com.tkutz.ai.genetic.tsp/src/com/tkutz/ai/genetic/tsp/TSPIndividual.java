@@ -1,11 +1,11 @@
 package com.tkutz.ai.genetic.tsp;
 
-import com.tkutz.ai.genetic.GeneticAlgorithm;
+import com.tkutz.ai.genetic.GA;
 import com.tkutz.ai.genetic.Individual;
 import com.tkutz.ai.tsp.Tour;
 
 /**
- * Adapter class adapting a {@link Tour} as defined in the TSP to an {@link Individual} as used by an {@link GeneticAlgorithm}.
+ * Adapter class adapting a {@link Tour} as defined in the TSP to an {@link Individual} as used by an {@link GA}.
  * 
  * @author kutz
  *

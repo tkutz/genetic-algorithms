@@ -16,7 +16,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.tkutz.ai.genetic.GeneticAlgorithm;
+import com.tkutz.ai.genetic.GA;
 import com.tkutz.ai.genetic.Population;
 import com.tkutz.ai.genetic.tsp.GAOptions;
 import com.tkutz.ai.genetic.tsp.GeneticTSPSolver;
@@ -161,7 +161,7 @@ public class TSPTest {
 		int avgGenCount = 0;
 		long avgTime = 0;
 		
-		GeneticAlgorithm<TSPIndividual> ga = new GeneticTSPSolver(options);
+		GA<TSPIndividual> ga = new GeneticTSPSolver(options);
 		
 		ExecutorService executor = Executors.newFixedThreadPool(EXEC_COUNT);
 		Callable<ExecutionResult> executionTask = () -> {
@@ -222,7 +222,7 @@ public class TSPTest {
 		resultWriter.append(resultBuilder.toString());
 	}
 	
-	protected ExecutionResult execute(GeneticAlgorithm<TSPIndividual> ga, int popSize) {
+	protected ExecutionResult execute(GA<TSPIndividual> ga, int popSize) {
 		StringBuilder info = new StringBuilder();
 		// time measuring
 		long startTime = System.currentTimeMillis();

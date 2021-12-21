@@ -5,7 +5,7 @@ import com.tkutz.ai.genetic.mutation.Mutation;
 import com.tkutz.ai.genetic.replace.Replacement;
 import com.tkutz.ai.genetic.selection.Selection;
 
-public abstract class GeneticAlgorithm<T extends Individual> {
+public abstract class GA<T extends Individual> {
 
 	protected abstract Selection<T> getSelection();
 	protected abstract CrossOver<T> getCrossOver();

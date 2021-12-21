@@ -3,7 +3,7 @@ package com.tkutz.ai.tsp.app;
 import java.io.File;
 import java.util.ArrayList;
 
-import com.tkutz.ai.genetic.GeneticAlgorithm;
+import com.tkutz.ai.genetic.GA;
 import com.tkutz.ai.genetic.Population;
 import com.tkutz.ai.genetic.tsp.GAOptions;
 import com.tkutz.ai.genetic.tsp.GeneticTSPSolver;
@@ -182,8 +182,10 @@ public class TSPApplicationFX extends Application {
 		Tour bestTour = null;
 		double avgCost = 0;
 		double worstCost = 0;
+		
 		GAOptions options = new GAOptions().enable2Opt().setMutation(new EdgeInversion(0.50));
-		GeneticAlgorithm<TSPIndividual> ga = new GeneticTSPSolver(options);
+		GA<TSPIndividual> ga = new GeneticTSPSolver(options);
+		
 		for (int ex = 0; ex < EXEC_COUNT; ex++) {
 			Population<TSPIndividual> pop = new Population<TSPIndividual>(POP_COUNT);
 			ga.initialize(pop);

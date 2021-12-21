@@ -1,6 +1,6 @@
 package com.tkutz.ai.genetic.tsp;
 
-import com.tkutz.ai.genetic.GeneticAlgorithm;
+import com.tkutz.ai.genetic.GA;
 import com.tkutz.ai.genetic.Population;
 import com.tkutz.ai.genetic.crossover.CrossOver;
 import com.tkutz.ai.genetic.mutation.Mutation;
@@ -11,7 +11,7 @@ import com.tkutz.ai.genetic.selection.TournamentSelection;
 import com.tkutz.ai.genetic.tsp.operators.SwapCities;
 import com.tkutz.ai.genetic.tsp.operators.TwoPointCrossOver;
 
-public class SimpleGA extends GeneticAlgorithm<TSPIndividual> {
+public class SimpleGA extends GA<TSPIndividual> {
 
 	@Override
 	protected Mutation<TSPIndividual> getMutation() {

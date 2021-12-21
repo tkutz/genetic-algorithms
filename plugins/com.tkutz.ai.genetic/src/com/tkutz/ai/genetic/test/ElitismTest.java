@@ -44,7 +44,7 @@ public class ElitismTest {
 			return fitness;
 		}
 	}
-
+	
 	@Before
 	public void setup() {
 		int populationSize = 10;
